@@ -5,6 +5,8 @@ from selene import be, have, by
 browser.config.window_width = 1920
 browser.config.window_height = 1080
 
+# fill form
+
 browser.open('https://demoqa.com/automation-practice-form')
 browser.element('[id="firstName"]').type('Helen')
 browser.element('[id="lastName"]').type('Bezgubenko')
@@ -28,8 +30,11 @@ browser.element('[id="city"]').click()
 browser.element('[id="react-select-4-option-0"]').click()
 browser.element('[id="submit"]').click()
 
+# check form
 browser.element('[class="modal-title h4"]').should(have.text('Thanks for submitting the form'))
-browser.element('.table-responsive .table tbody tr')[0].should(have.text('Helen Bezgubenko'))
+browser.all('.table-responsive .table thead tr th')[0].should(have.text('Label'))
+browser.all('.table-responsive .table thead tr th')[1].should(have.text('Values'))
+browser.all('.table-responsive .table tbody tr')[0].should(have.text('Helen Bezgubenko'))
 browser.all('.table-responsive .table tbody tr')[1].should(have.text('eb@e.ru'))
 browser.all('.table-responsive .table tbody tr')[2].should(have.text('Female'))
 browser.all('.table-responsive .table tbody tr')[3].should(have.text('9011111111'))
